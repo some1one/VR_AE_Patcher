@@ -1,0 +1,32 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            // Use IntelliSense to find out which attributes exist for C# debugging
+            // Use hover for the description of the existing attributes
+            // For further information visit https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger-launchjson.md
+            "name": ".NET Core Launch (console)",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            // If you have changed target frameworks, make sure to update the program path.
+            "program": "${workspaceFolder}/VR_AE_Patcher/bin/Debug/net8.0/VR_AE_Patcher.exe",
+            "args": ["run-patcher", "--DataFolderPath", "D:\\SteamLibrary\\steamapps\\common\\Skyrim Special Edition\\Data", "--GameRelease", "SkyrimSE", "--LoadOrderFilePath", "C:\\Users\\Justin\\AppData\\Local\\Skyrim Special Edition\\plugins.txt", "--LoadOrderIncludesCreationClub", "--OutputPath", "D:\\SteamLibrary\\steamapps\\common\\Skyrim Special Edition\\Data\\VR_AE_Patcher.esm", "--PatcherName", "VR_AE_Patcher", "--ModKey", "VR_AE_Patcher.esm"],
+            "cwd": "${workspaceFolder}/VR_AE_Patcher",
+            // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
+            "console": "internalConsole",
+            "stopAtEntry": false,
+            "justMyCode": false,
+            "symbolOptions": {
+                "searchPaths": [],
+                "searchMicrosoftSymbolServer": false,
+                "searchNuGetOrgSymbolServer": true
+            }
+        },
+        {
+            "name": ".NET Core Attach",
+            "type": "coreclr",
+            "request": "attach"
+        }
+    ]
+}
