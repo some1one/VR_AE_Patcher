@@ -30,6 +30,7 @@ public sealed record class SkyrimEnvDiffPatcher(
                 continue;
             }
 
+            //todo: modify record for merged stuff (like if name is empty in left, use right)
             // var rightContext = diff.RightRecord.ToLinkGetter<ISkyrimMajorRecordGetter>()
             //     .ResolveContext<ISkyrimMod, ISkyrimModGetter, ISkyrimMajorRecord, ISkyrimMajorRecordGetter>(EnvRight.LinkCache)!;
             //rightContext.GetOrAddAsOverride(PatchMod);

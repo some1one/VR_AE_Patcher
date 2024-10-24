@@ -39,6 +39,45 @@ public static class TypeHelpers
         return topLevelGroups.GetValueOrDefault(typeof(TModGetterInterface));
     }
 
-    public static IEnumerable<T> WhereNotNull<T>(this IEnumerable<T?> source)
-        => source.Where(x => x != null).Cast<T>();
+    public static bool ImplementsOrDerives(this Type @this, Type from)
+    {
+        if (!from.IsGenericType || !from.IsGenericTypeDefinition)
+        {
+            return from.IsAssignableFrom(@this);
+        }
+        
+        if (from.IsInterface)
+        {
+            foreach (Type @interface in @this.GetInterfaces())
+            {
+                if (@interface.IsGenericType && @interface.GetGenericTypeDefinition() == from
+                || from == @interface && @interface.IsAssignableFrom(from))
+                {
+                    return true;
+                }
+            }
+        }
+
+        if (@this.IsGenericType && @this.GetGenericTypeDefinition() == from
+        || @this.IsAssignableFrom(from))
+        {
+            return true;
+        }
+
+        if (@this.BaseType == typeof(object) || @this.BaseType == typeof(ValueType))
+        {
+            //everthing is assignable to object or ValueType
+            //stop here since there are no more base types to check
+            return false;
+        }
+
+        return @this.BaseType?.ImplementsOrDerives(from) ?? false;
+    }
+
+    public static TValue? TryFindValueDynamic<TKey, TValue>(Dictionary<TKey, TValue> dict, TKey key, out bool found)
+       where TKey : notnull
+    {
+        found = dict.TryGetValue(key, out TValue? value);
+        return value;
+    }
 }

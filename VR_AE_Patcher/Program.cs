@@ -92,9 +92,9 @@ namespace VR_AE_Patcher
                 .Build()
                 .ToContextualEnvironment();
 
-            var formKey = FormKey.Factory("10B161:Skyrim.esm");
-            leftEnv.LinkCache.TryResolve<IActivatorGetter>(formKey, out var activatorLeft);
-            rightEnv.LinkCache.TryResolve<IActivatorGetter>(formKey, out var activatorRight);
+            var formKey = FormKey.Factory("000D67:Skyrim.esm");
+            leftEnv.LinkCache.TryResolve<IArmorAddonGetter>(formKey, out var activatorLeft);
+            rightEnv.LinkCache.TryResolve<IArmorAddonGetter>(formKey, out var activatorRight);
 
             var newMod = new SkyrimMod(ModKey.FromFileName($"{settings!.Value.PatchName}_Patcher.{extension}"), SkyrimRelease.SkyrimSE);
             newMod.UsingLocalization = true;
